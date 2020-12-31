@@ -8,5 +8,11 @@ services:
       dockerfile: ./Dockerfile
     environment:
       NODE_ENV: production
+      DB_PATH: /data/sensor-readings.db
     ports:
       - 3000:3000
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /red5x4/data/sensor-state
+        target: /data
